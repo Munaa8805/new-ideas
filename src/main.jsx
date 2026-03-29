@@ -19,6 +19,7 @@ import Ideas from "./pages/Ideas";
 import EditIdea from "./pages/EditIdea";
 import ProjectDetails from "./pages/ProjectDetails";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/not-found";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
         <Route path="new-idea" element={<NewIdea />} />
         <Route path="profile" element={<Profile />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Route>,
   ),
 );
