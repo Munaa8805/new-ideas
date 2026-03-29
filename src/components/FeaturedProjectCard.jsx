@@ -8,13 +8,14 @@ export default function FeaturedProjectCard({ project }) {
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="block aspect-16/10 bg-gray-100 relative group"
+        className="block aspect-16/10 bg-gray-100 relative group overflow-hidden"
       >
         <img
           src={project.image}
-          alt={project.title}
-          className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+          alt={project.title || ""}
+          className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
           loading="lazy"
+          decoding="async"
         />
       </a>
       <div className="p-6 flex flex-col gap-3 flex-1">
@@ -29,7 +30,6 @@ export default function FeaturedProjectCard({ project }) {
         </p>
         <Link
           to={`/projects/${project._id}`}
-          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700 mt-2"
         >
           View project <ArrowRight className="w-4 h-4" />
