@@ -107,7 +107,13 @@ export default function Ideas() {
       {loadState === "success" && filteredIdeas.length > 0 && (
         <div className="grid gap-6">
           {filteredIdeas.map((idea) => (
-            <IdeaFeedCard key={idea._id} idea={idea} />
+            <IdeaFeedCard
+              key={idea._id}
+              idea={idea}
+              onDeleted={(id) =>
+                setIdeas((prev) => prev.filter((i) => i._id !== id))
+              }
+            />
           ))}
         </div>
       )}
