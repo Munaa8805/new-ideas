@@ -1,5 +1,6 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
+import { Loader2 } from "lucide-react";
 import App from "./App.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import "./index.css";
@@ -10,16 +11,26 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Home from "./pages/Home";
-import NewIdea from "./pages/NewIdea";
-import Projects from "./pages/Projects";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Ideas from "./pages/Ideas";
-import EditIdea from "./pages/EditIdea";
-import ProjectDetails from "./pages/ProjectDetails";
-import Profile from "./pages/Profile";
-import NotFound from "./pages/not-found";
+
+const Home = lazy(() => import("./pages/Home"));
+const NewIdea = lazy(() => import("./pages/NewIdea"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
+const Ideas = lazy(() => import("./pages/Ideas"));
+const EditIdea = lazy(() => import("./pages/EditIdea"));
+const ProjectDetails = lazy(() => import("./pages/ProjectDetails"));
+const Profile = lazy(() => import("./pages/Profile"));
+const NotFound = lazy(() => import("./pages/not-found"));
+
+function RouteFallback() {
+  return (
+    <div className="min-h-[50vh] flex items-center justify-center gap-3 text-gray-500">
+      <Loader2 className="w-8 h-8 animate-spin text-indigo-600" aria-hidden />
+      <span className="font-medium">Loading…</span>
+    </div>
+  );
+}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -47,7 +58,9 @@ if (!root) throw new Error("Root element #root not found");
 createRoot(root).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <Suspense fallback={<RouteFallback />}>
+        <RouterProvider router={router} />
+      </Suspense>
     </AuthProvider>
   </StrictMode>,
 );
