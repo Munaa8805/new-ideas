@@ -38,8 +38,8 @@ export default function BannerCarousel() {
   const [direction, setDirection] = useState(0);
 
   const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
+    enter: (dir) => ({
+      x: dir > 0 ? 1000 : -1000,
       opacity: 0
     }),
     center: {
@@ -47,19 +47,19 @@ export default function BannerCarousel() {
       x: 0,
       opacity: 1
     },
-    exit: (direction: number) => ({
+    exit: (dir) => ({
       zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
+      x: dir < 0 ? 1000 : -1000,
       opacity: 0
     })
   };
 
   const swipeConfidenceThreshold = 10000;
-  const swipePower = (offset: number, velocity: number) => {
+  const swipePower = (offset, velocity) => {
     return Math.abs(offset) * velocity;
   };
 
-  const paginate = (newDirection: number) => {
+  const paginate = (newDirection) => {
     setDirection(newDirection);
     setCurrentIndex((prevIndex) => (prevIndex + newDirection + BANNERS.length) % BANNERS.length);
   };
