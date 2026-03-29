@@ -194,12 +194,12 @@ export default function Navbar() {
                 ))}
                 {isAuthenticated ? (
                   <Link
-                    to="/profile"
+                    to="/new-idea"
                     onClick={toggleSidebar}
                     className="flex items-center gap-3 p-4 rounded-2xl text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition-all font-medium"
                   >
-                    <User className="w-5 h-5" />
-                    Profile
+                    <Lightbulb className="w-5 h-5" />
+                    New Idea
                   </Link>
                 ) : null}
 

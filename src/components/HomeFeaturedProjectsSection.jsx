@@ -34,15 +34,13 @@ export default function HomeFeaturedProjectsSection() {
   }, []);
 
   return (
-    <section className="bg-gray-50 rounded-3xl p-8 md:p-12 space-y-8">
+    <section className="bg-gray-50 rounded-3xl  space-y-8">
       <SectionHeading
         title="Featured projects"
         description="Highlights from the community—real builds worth exploring."
       />
 
-      {loadState === "loading" && (
-        <LoadingState label="Loading projects…" />
-      )}
+      {loadState === "loading" && <LoadingState label="Loading projects…" />}
 
       {loadState === "error" && (
         <p className="text-center text-red-600 py-8">
@@ -51,7 +49,9 @@ export default function HomeFeaturedProjectsSection() {
       )}
 
       {loadState === "success" && featuredProjects.length === 0 && (
-        <p className="text-center text-gray-500 py-8">No featured projects yet.</p>
+        <p className="text-center text-gray-500 py-8">
+          No featured projects yet.
+        </p>
       )}
 
       {loadState === "success" && featuredProjects.length > 0 && (

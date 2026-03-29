@@ -1,36 +1,42 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const BANNERS = [
   {
     id: 1,
     title: "Turn Your Ideas into Reality",
-    description: "The ultimate platform for creators to organize, track, and build their next big project.",
-    image: "https://picsum.photos/seed/innovation/1920/1080",
+    description:
+      "The ultimate platform for creators to organize, track, and build their next big project.",
+    image:
+      "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_2_ofeisq.jpg",
     cta: "Get Started",
     link: "/register",
-    color: "from-indigo-600/90 to-purple-600/90"
+    color: "from-indigo-600/90 to-purple-600/90",
   },
   {
     id: 2,
     title: "Collaborate with Visionaries",
-    description: "Connect with other brilliant minds and find the perfect partners for your ventures.",
-    image: "https://picsum.photos/seed/collaboration/1920/1080",
+    description:
+      "Connect with other brilliant minds and find the perfect partners for your ventures.",
+    image:
+      "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905166/banner_3_qonf33.jpg",
     cta: "Explore Ideas",
     link: "/ideas",
-    color: "from-blue-600/90 to-indigo-600/90"
+    color: "from-blue-600/90 to-indigo-600/90",
   },
   {
     id: 3,
     title: "Track Your Progress",
-    description: "From initial spark to final launch, keep every milestone organized in one place.",
-    image: "https://picsum.photos/seed/growth/1920/1080",
+    description:
+      "From initial spark to final launch, keep every milestone organized in one place.",
+    image:
+      "https://res.cloudinary.com/drneyxkqq/image/upload/v1771905165/sneakers_n1j2x9.jpg",
     cta: "View Projects",
     link: "/projects",
-    color: "from-emerald-600/90 to-teal-600/90"
-  }
+    color: "from-emerald-600/90 to-teal-600/90",
+  },
 ];
 
 export default function BannerCarousel() {
@@ -40,18 +46,18 @@ export default function BannerCarousel() {
   const slideVariants = {
     enter: (dir) => ({
       x: dir > 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
     exit: (dir) => ({
       zIndex: 0,
       x: dir < 0 ? 1000 : -1000,
-      opacity: 0
-    })
+      opacity: 0,
+    }),
   };
 
   const swipeConfidenceThreshold = 10000;
@@ -61,7 +67,10 @@ export default function BannerCarousel() {
 
   const paginate = (newDirection) => {
     setDirection(newDirection);
-    setCurrentIndex((prevIndex) => (prevIndex + newDirection + BANNERS.length) % BANNERS.length);
+    setCurrentIndex(
+      (prevIndex) =>
+        (prevIndex + newDirection + BANNERS.length) % BANNERS.length,
+    );
   };
 
   useEffect(() => {
@@ -83,7 +92,7 @@ export default function BannerCarousel() {
           exit="exit"
           transition={{
             x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 }
+            opacity: { duration: 0.2 },
           }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -98,12 +107,17 @@ export default function BannerCarousel() {
           }}
           className="absolute inset-0 w-full h-full"
         >
-          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${BANNERS[currentIndex].image})` }}>
-            <div className={`absolute inset-0 bg-gradient-to-r ${BANNERS[currentIndex].color} mix-blend-multiply`} />
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${BANNERS[currentIndex].image})` }}
+          >
+            <div
+              className={`absolute inset-0 bg-gradient-to-r ${BANNERS[currentIndex].color} mix-blend-multiply`}
+            />
           </div>
-          
+
           <div className="relative h-full flex flex-col justify-center px-8 md:px-16 space-y-6 text-white max-w-3xl">
-            <motion.h2 
+            <motion.h2
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -111,7 +125,7 @@ export default function BannerCarousel() {
             >
               {BANNERS[currentIndex].title}
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
@@ -124,7 +138,7 @@ export default function BannerCarousel() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <Link 
+              <Link
                 to={BANNERS[currentIndex].link}
                 className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg"
               >
@@ -159,7 +173,7 @@ export default function BannerCarousel() {
               setCurrentIndex(index);
             }}
             className={`h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/50'
+              index === currentIndex ? "w-8 bg-white" : "w-2 bg-white/50"
             }`}
           />
         ))}
