@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function FeaturedProjectCard({ project }) {
   return (
@@ -26,14 +27,13 @@ export default function FeaturedProjectCard({ project }) {
         <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 flex-1">
           {project.description}
         </p>
-        <a
-          href={project.url}
-          target="_blank"
+        <Link
+          to={`/projects/${project._id}`}
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700 mt-2"
         >
           View project <ArrowRight className="w-4 h-4" />
-        </a>
+        </Link>
       </div>
     </article>
   );
