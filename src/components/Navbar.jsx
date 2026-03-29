@@ -68,13 +68,22 @@ export default function Navbar() {
                 </Link>
               ))}
               {isAuthenticated ? (
-                <Link
-                  to="/new-idea"
-                  className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
-                >
-                  <Lightbulb className="w-4 h-4" />
-                  New Idea
-                </Link>
+                <>
+                  <Link
+                    to="/new-idea"
+                    className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
+                  >
+                    <Lightbulb className="w-4 h-4" />
+                    New Idea
+                  </Link>
+                  {/* <Link
+                    to="/profile"
+                    className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
+                  >
+                    <User className="w-4 h-4" />
+                    Profile
+                  </Link> */}
+                </>
               ) : null}
             </div>
 
@@ -193,14 +202,24 @@ export default function Navbar() {
                   </Link>
                 ))}
                 {isAuthenticated ? (
-                  <Link
-                    to="/new-idea"
-                    onClick={toggleSidebar}
-                    className="flex items-center gap-3 p-4 rounded-2xl text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition-all font-medium"
-                  >
-                    <Lightbulb className="w-5 h-5" />
-                    New Idea
-                  </Link>
+                  <>
+                    <Link
+                      to="/new-idea"
+                      onClick={toggleSidebar}
+                      className="flex items-center gap-3 p-4 rounded-2xl text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition-all font-medium"
+                    >
+                      <Lightbulb className="w-5 h-5" />
+                      New Idea
+                    </Link>
+                    <Link
+                      to="/profile"
+                      onClick={toggleSidebar}
+                      className="flex items-center gap-3 p-4 rounded-2xl text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition-all font-medium"
+                    >
+                      <User className="w-5 h-5" />
+                      Profile
+                    </Link>
+                  </>
                 ) : null}
 
                 {!isAuthenticated ? (

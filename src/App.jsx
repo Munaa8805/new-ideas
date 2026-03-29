@@ -1,37 +1,18 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Home from "./pages/Home";
-import NewIdea from "./pages/NewIdea";
-import Projects from "./pages/Projects";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Ideas from "./pages/Ideas";
-import EditIdea from "./pages/EditIdea";
-import ProjectDetails from "./pages/ProjectDetails";
-import Profile from "./pages/Profile";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="ideas" element={<Ideas />} />
-          <Route path="projects" element={<Projects />} />
-          <Route path="projects/:id" element={<ProjectDetails />} />
-          <Route path="" element={<ProtectedRoute />}>
-            <Route path="ideas/:ideaId/edit" element={<EditIdea />} />
-            <Route path="new-idea" element={<NewIdea />} />
-          </Route>
-
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="" element={<ProtectedRoute />}>
-            <Route path="profile" element={<Profile />} />
-          </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+      <Navbar />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 min-h-[100vh]">
+        <Outlet />
+      </main>
+      <footer className="border-t border-gray-200 bg-white py-8 mt-auto">
+        <div className="max-w-7xl mx-auto px-4 text-center text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} IdeaHub. All rights reserved.
+        </div>
+      </footer>
+    </div>
   );
 }
